@@ -1,0 +1,87 @@
+import { useEffect, useState } from 'react';
+
+import NavBar from './components/NavBar';
+import DashBord from './components/DashBord';
+import DataTable from 'react-data-table-component';
+import SignInModel from './components/SignInModel';
+import 'materialize-css/dist/css/materialize.min.css';
+
+function App() {
+ 
+  const [backendData, setBackEndData] = useState([{}]);
+
+
+  useEffect(() =>{
+    fetch("/posts").then(
+      response => response.json()
+    ).then(
+      data => {
+        setBackEndData(data)
+        console.log(data);
+      }
+    )
+  }, [])
+
+
+  
+
+
+
+  const columns = [
+    {
+      name: "פעולות",
+      selector: (row) => row.actions,
+    },
+    {
+      name: "תאריך",
+      selector: (row) => new Date(row.created_at).toLocaleDateString()
+      ,
+    },
+    {
+      name: "סטטוס",
+      selector: (row) => row.status,
+    },
+    {
+      name: "מחיר",
+      selector: (row) => row.price,
+    },
+    {
+      name: "סוג המאמר",
+      selector: (row) => row.article_type,
+    },
+    {
+      name: "ספק",
+      selector: (row) => row.contractor,
+    },
+    {
+      name: "שם המאמר",
+      selector: (row) => row.article_name,
+    },
+    {
+      name: "שם לקוח",
+      selector: (row) => row.client_name,
+    }
+  ];
+
+ 
+
+  //console.log("Data:", backendData.articles);
+  // console.log("Name selector:", data.map((row) => row.name));
+  // console.log("Email selector:", data.map((row) => row.email));
+  // console.log("Age selector:", data.map((row) => row.age));
+
+  return (
+    <div>
+
+      <NavBar />
+      <DashBord price={backendData.spend} articles={backendData.count} alerts={backendData.alerts} />
+        <div className="container">
+        <SignInModel />
+        <DataTable columns={columns} data={backendData.articles} />
+        </div>
+       
+    </div>
+  );
+}
+
+export default App;
