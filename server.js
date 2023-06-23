@@ -27,6 +27,9 @@ app.use("/alerts", require("./routes/alertsRoutes"));
 app.use("/auth", require("./routes/authRoutes"));
 app.use("/profile", require("./routes/profileRoutes"));
 app.use("/admin", require("./routes/adminRoutes"));
+app.get('/test', (req, res) => {
+  res.send('hello world')
+})
 
 
 
