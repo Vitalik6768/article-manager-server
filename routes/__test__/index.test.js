@@ -7,10 +7,6 @@ const db = require("../../config/db");
 
 
 
-
-
-
-
 describe('test', () => {
   it('returns "Hello, world!"', async () => {
     const res = await request(app).get('/test');
