@@ -2,28 +2,36 @@ name: server CI/CD
 
 on:
   push:
-    branches: [ main ]
-
+    branches: [main]
 
 jobs:
-  build:
-
+  test:
+    name: Test
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x, 20.x]
-
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm install
-      - run: npm test
+          node-version: 14
 
-        
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
 
 
 
