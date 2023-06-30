@@ -2,6 +2,26 @@
 
 const request = require('supertest');
 const app = require('../../app');
+const db = require("../../config/db");
+
+
+
+
+
+
+
+
+describe('test', () => {
+  it('returns "Hello, world!"', async () => {
+    const res = await request(app).get('/test');
+    expect(res.status).toBe(200); // Check if the response status is 200 (OK)
+    expect(res.text).toBe('hello world'); // Check if the response body is "hello world"
+  });
+});
+
+
+
+
 
 
 // it('retrieves articles by month and user ID', async () => {
@@ -24,10 +44,3 @@ const app = require('../../app');
 //   });
 
 
-describe('test', () => {
-  it('returns "Hello, world!"', async () => {
-    const res = await request(app).get('/test');
-    expect(res.status).toBe(200); // Check if the response status is 200 (OK)
-    expect(res.text).toBe('hello world'); // Check if the response body is "hello world"
-  });
-});
