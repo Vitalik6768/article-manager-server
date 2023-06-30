@@ -12,5 +12,6 @@ router.route("/:id/user/:userId").put(verifyToken, articleControllers.updateArti
 router.route("/:id/status/:userId").put(verifyToken, articleControllers.updateArticleStatus);
 router.route("/:month/user/:userId").get(verifyToken, articleControllers.getArticlesByMonth);
 router.route("/user/:userId").get(verifyToken, articleControllers.getAllArticles);
+router.route("/test/:userId").get(verifyToken, articleControllers.testing);
 module.exports = router;
 

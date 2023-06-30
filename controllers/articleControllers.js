@@ -6,6 +6,10 @@ const Users = require("../models/Users");
 const Permission = require("../models/Permission");
 
 
+exports.testing = async(req, res, next) => {
+  res.send('hello world');
+}
+
 
 exports.getAllArticles = async (req, res, next) => {
   let user = req.params.userId;
