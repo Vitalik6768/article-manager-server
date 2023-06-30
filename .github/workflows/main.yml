@@ -1,4 +1,4 @@
-name: React CI/CD
+name: server CI/CD
 
 on:
   push:
@@ -20,10 +20,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-      - name: Run tests
-        run: npm test
-
         env:
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_PORT: ${{ secrets.DB_PORT }}
@@ -32,6 +28,11 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
+
+      - name: Run tests
+        run: npm test
+
+        
 
 
 
