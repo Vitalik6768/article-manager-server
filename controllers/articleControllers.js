@@ -235,7 +235,7 @@ exports.createNewArticle = async (req, res, next) => {
 
     const monthName = replaceMonth(articles[0].created_at);
 
-    res.status(201).json({ count: articles.length, spend: priceRemaining, alerts, month: monthName, image:image, articles });
+    res.status(200).json({ count: articles.length, spend: priceRemaining, alerts, month: monthName, image:image, articles });
   } catch (error) {
     next(error);
   }
