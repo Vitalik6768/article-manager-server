@@ -53,6 +53,7 @@ it('add new article', async () => {
       status: 'הוזמן',
       user_id: 2
     });
+    
 
   expect(res.status).toBe(200);
   expect(typeof res.body).toBe('object');
