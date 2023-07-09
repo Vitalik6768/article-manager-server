@@ -30,7 +30,6 @@ it('retrieves articles by month', async () => {
 
 
 
-//Test the PUT /:id/status/:userId route
 it('updates the status', async () => {
   const res = await request(app)
     .put('/articles/6/status/2')
@@ -77,6 +76,9 @@ it('update article', async () => {
   expect(res.status).toBe(200);
   expect(typeof res.body).toBe('object');
 });
+
+
+
 
 
 
