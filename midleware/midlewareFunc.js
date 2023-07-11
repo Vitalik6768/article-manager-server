@@ -47,6 +47,8 @@ const verifyToken = (req, res, next) => {
         return res.status(403).json("Token is not valid!");
       }
 
+      //verifay token 
+
       req.user = decodedToken;
       next();
     });
