@@ -6,9 +6,10 @@ const Users = require("../models/Users");
 const Permission = require("../models/Permission");
 
 
-exports.testing = async(req, res, next) => {
+exports.testing = async (req, res, next) => {
   res.send('hello world');
 }
+
 
 
 exports.getAllArticles = async (req, res, next) => {
@@ -16,9 +17,9 @@ exports.getAllArticles = async (req, res, next) => {
   let [userExist] = await Users.ifUserExistInDb(user);
 
   if (userExist.length > 0) {
-    
 
-  }else{
+
+  } else {
     return res.status(400).json({ message: 'no user' });
   }
 
@@ -28,11 +29,8 @@ exports.getAllArticles = async (req, res, next) => {
   let image = userCredantions[0].image;
   let [perm] = await Permission.permissionCheak(role, 'READ')
 
-
-
-
   if (perm.length > 0) {
-    
+
   } else {
     return res.status(400).json({ message: 'You Don\'t Have Permission' });
   }
@@ -44,20 +42,28 @@ exports.getAllArticles = async (req, res, next) => {
     const alerts = getAlerts[0].alerts;
     let priceRemining = 1440;
 
+    if (articles.length == 0) {
+      return res.status(200).json({
+        count: 0, spend: 0, alerts,
+        month: 'אין מאמרים לחודש זה', image: image, articles
+      });
+    }
+
     for (i of articles) {
       priceRemining -= i.price;
     }
     const monthName = replaceMonth(articles[0].created_at);
 
-    res.status(200).json({ count: articles.length, spend: priceRemining, alerts, month: monthName, image:image, articles });
+    res.status(200).json({ count: articles.length, spend: priceRemining, alerts, month: monthName, image: image, articles });
   } catch (error) {
     next(error);
   }
 };
 
+
 exports.getArticlesByMonth = async (req, res, next) => {
   let user = req.params.userId;
-  let [userCredantions] = await Users.getUserCradantions(user); 
+  let [userCredantions] = await Users.getUserCradantions(user);
   let status = userCredantions[0].status;
   let role = userCredantions[0].role;
   let image = userCredantions[0].image;
@@ -65,12 +71,12 @@ exports.getArticlesByMonth = async (req, res, next) => {
 
 
 
-  if (perm.length > 0 && status =='APPROVED') {
-    
+  if (perm.length > 0 && status == 'APPROVED') {
+
   } else {
     return res.status(400).json({ message: 'You Don\'t Have Permission' });
   }
-  
+
 
   try {
     let month = req.params.month;
@@ -93,7 +99,7 @@ exports.getArticlesByMonth = async (req, res, next) => {
 
 
 
-    res.status(200).json({ count: articles.length, spend: priceRemaining, alerts, month: monthName,image: image, articles });
+    res.status(200).json({ count: articles.length, spend: priceRemaining, alerts, month: monthName, image: image, articles });
   } catch (error) {
     next(error);
   }
@@ -107,7 +113,7 @@ exports.updateArticleById = async (req, res, next) => {
   const postId = req.params.id;
   const userId = req.params.userId;
 
- 
+
   let [userCredantions] = await Users.getUserCradantions(userId);
   let status = userCredantions[0].status;
   let role = userCredantions[0].role;
@@ -115,7 +121,7 @@ exports.updateArticleById = async (req, res, next) => {
   let [perm] = await Permission.permissionCheak(role, 'UPDATE')
 
   if (perm.length > 0 && status == 'APPROVED') {
-    
+
   } else {
     return res.status(400).json({ message: 'You Don\'t Have Permission' });
   }
@@ -139,12 +145,12 @@ exports.updateArticleById = async (req, res, next) => {
 
     const monthName = replaceMonth(articles[0].created_at);
 
-    res.status(200).json({ count: articles.length, spend: priceRemaining, alerts, month: monthName, image:image, articles });
+    res.status(200).json({ count: articles.length, spend: priceRemaining, alerts, month: monthName, image: image, articles });
   } catch (error) {
     next(error);
   }
 
-  
+
 
 
 };
@@ -189,7 +195,7 @@ exports.updateArticleStatus = async (req, res, next) => {
 
 
 
-    res.status(200).json({ count: articles.length, spend: priceRemaining, alerts, month: monthName, image:image, articles });
+    res.status(200).json({ count: articles.length, spend: priceRemaining, alerts, month: monthName, image: image, articles });
   } catch (error) {
     next(error);
   }
@@ -210,14 +216,14 @@ exports.createNewArticle = async (req, res, next) => {
     let image = userCredantions[0].image;
     let [perm] = await Permission.permissionCheak(role, 'CREATE');
 
-  
+
     if (perm.length > 0 && userStatus == 'APPROVED') {
-    
+
     } else {
       return res.status(400).json({ message: 'הפעולה חסומה נא לפנות למנהל המערכת' });
     }
 
-    
+
 
 
     const [contractorPrice] = await Contractors.findArticlePriceByContractorName(contractor, article_type);
@@ -235,7 +241,7 @@ exports.createNewArticle = async (req, res, next) => {
 
     const monthName = replaceMonth(articles[0].created_at);
 
-    res.status(200).json({ count: articles.length, spend: priceRemaining, alerts, month: monthName, image:image, articles });
+    res.status(200).json({ count: articles.length, spend: priceRemaining, alerts, month: monthName, image: image, articles });
   } catch (error) {
     next(error);
   }

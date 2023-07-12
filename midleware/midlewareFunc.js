@@ -39,11 +39,17 @@ const upload = multer({
 
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
+  const id = req.params.userId
+
   if (authHeader) {
     const token = authHeader.split(" ")[1];
 
     jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
       if (err) {
+        return res.status(403).json("Token is not valid!");
+      }
+
+      if(decodedToken.id != id){
         return res.status(403).json("Token is not valid!");
       }
 

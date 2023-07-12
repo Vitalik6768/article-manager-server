@@ -5,8 +5,9 @@ const bcrypt = require("bcryptjs");
 
 
 exports.getAllUsers = async (req, res, next) => {
-  const id = req.params.userid;
+  const id = req.params.userId;
   let [users] = await Users.getAllUsers(id);
+  console.log('ok');
 
   //CHECK IF ADMIN
   let [isAdmin] = await Users.ifUsereIsAdmin(id);
@@ -27,7 +28,7 @@ exports.getAllUsers = async (req, res, next) => {
 
 
 exports.addNewUser = async (req, res, next) => {
-  const admin = req.params.admin;
+  const admin = req.params.userId;
   const { name, email, password, passwordConfirm, role, token } = req.body;
 
   //CHECK IF ADMIN
@@ -105,8 +106,9 @@ exports.addNewUser = async (req, res, next) => {
 
 
 exports.updateRole = async (req, res, next) => {
-  const id = req.params.userid;
-  const admin = req.params.admin;
+  const id = req.params.id;
+  const admin = req.params.userId;
+  console.log('ok');
 
   let { role } = req.body;
 
@@ -134,9 +136,10 @@ exports.updateRole = async (req, res, next) => {
 
 
 exports.updateStatus = async (req, res, next) => {
-  const id = req.params.userid;
-  const admin = req.params.admin;
+  const id = req.params.id;
+  const admin = req.params.userId;
   let { status } = req.body;
+  console.log('ok');
 
 
   //CHECK IF ADMIN
@@ -162,8 +165,8 @@ exports.updateStatus = async (req, res, next) => {
 };
 
 exports.deleteUser = async (req, res, next) => {
-  const admin = req.params.admin;
-  const userId = req.params.userid;
+  const admin = req.params.userId;
+  const userId = req.params.id;
 
   //CHECK IF ADMIN
 
