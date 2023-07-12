@@ -3,7 +3,7 @@ const Users = require("../models/Users");
 
 
 exports.uploadFiles = async (req, res, next) => {
-  const userid = req.params.userId;
+  const userid = req.params.userid;
   const fileName = req.file.filename;
   
   
@@ -22,7 +22,7 @@ exports.uploadFiles = async (req, res, next) => {
 
 exports.profile = async (req, res, next) => {
   
-  const userId = req.params.userid;
+  const userId = req.params.userId;
 
   try {
     const [images] = await Users.getUserImage(userId);
