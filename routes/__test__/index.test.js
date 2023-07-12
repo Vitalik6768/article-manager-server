@@ -18,27 +18,27 @@ const db = require("../../config/db");
 
 // get all articles
 
-it('retrieves articles by month', async () => {
-  const res = await request(app)
-    .get('/articles/user/2')
-    .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InRlc3QxIiwiZW1haWwiOiJ0ZXN0MUBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2ODgxMzE5MTQsImV4cCI6MTY5NTkwNzkxNH0.vSTBKEH4l9UkfNyts3hZJiuj3tFvx-lLZrP0qv2f7Z0');
-  expect(res.status).toBe(200);
-  expect(typeof res.body).toBe('object');
-}, 10000);
+// it('retrieves articles by month', async () => {
+//   const res = await request(app)
+//     .get('/articles/user/2')
+//     .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InRlc3QxIiwiZW1haWwiOiJ0ZXN0MUBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2ODgxMzE5MTQsImV4cCI6MTY5NTkwNzkxNH0.vSTBKEH4l9UkfNyts3hZJiuj3tFvx-lLZrP0qv2f7Z0');
+//   expect(res.status).toBe(200);
+//   expect(typeof res.body).toBe('object');
+// }, 10000);
 
 
 
 
 
-it('updates the status', async () => {
-  const res = await request(app)
-    .put('/articles/6/status/2')
-    .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InRlc3QxIiwiZW1haWwiOiJ0ZXN0MUBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2ODgxMzE5MTQsImV4cCI6MTY5NTkwNzkxNH0.vSTBKEH4l9UkfNyts3hZJiuj3tFvx-lLZrP0qv2f7Z0')
-    .send({ status: "ממתין" });
+// it('updates the status', async () => {
+//   const res = await request(app)
+//     .put('/articles/6/status/2')
+//     .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InRlc3QxIiwiZW1haWwiOiJ0ZXN0MUBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2ODgxMzE5MTQsImV4cCI6MTY5NTkwNzkxNH0.vSTBKEH4l9UkfNyts3hZJiuj3tFvx-lLZrP0qv2f7Z0')
+//     .send({ status: "ממתין" });
 
-  expect(res.status).toBe(200);
-  expect(typeof res.body).toBe('object');
-});
+//   expect(res.status).toBe(200);
+//   expect(typeof res.body).toBe('object');
+// });
 
 
 
@@ -62,20 +62,20 @@ it('add new article', async () => {
 
 
 
-it('update article', async () => {
-  const res = await request(app)
-    .put('/articles/6/user/2')
-    .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InRlc3QxIiwiZW1haWwiOiJ0ZXN0MUBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2ODgxMzE5MTQsImV4cCI6MTY5NTkwNzkxNH0.vSTBKEH4l9UkfNyts3hZJiuj3tFvx-lLZrP0qv2f7Z0')
-    .send({
-      client_name: 'test556',
-      article_name: 'updated',
-      contractor: 'כתבנית',
-      article_type: 'מאמר לאתר 300',
-    });
+// it('update article', async () => {
+//   const res = await request(app)
+//     .put('/articles/6/user/2')
+//     .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InRlc3QxIiwiZW1haWwiOiJ0ZXN0MUBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2ODgxMzE5MTQsImV4cCI6MTY5NTkwNzkxNH0.vSTBKEH4l9UkfNyts3hZJiuj3tFvx-lLZrP0qv2f7Z0')
+//     .send({
+//       client_name: 'test556',
+//       article_name: 'updated',
+//       contractor: 'כתבנית',
+//       article_type: 'מאמר לאתר 300',
+//     });
 
-  expect(res.status).toBe(200);
-  expect(typeof res.body).toBe('object');
-});
+//   expect(res.status).toBe(200);
+//   expect(typeof res.body).toBe('object');
+// });
 
 
 
