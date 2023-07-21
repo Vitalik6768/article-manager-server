@@ -54,6 +54,8 @@ exports.login = async (req, res) => {
 
 exports.register = async (req, res) => {
   const { name, email, password, passwordConfirm, role, token } = req.body;
+  console.log('hfghf.fghfgh');
+  
 
 
   try {
@@ -85,7 +87,7 @@ exports.register = async (req, res) => {
 
       const data = await response.json();
       if (data.success) {
-        console.log('gfhfgh');
+        
         console.log(data);
         
       } else {
